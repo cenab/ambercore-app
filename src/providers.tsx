@@ -1,4 +1,3 @@
-import { NextUIProvider } from "@nextui-org/react";
 import { ReactNode } from "react";
 
 interface ProvidersProps {
@@ -7,8 +6,8 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <NextUIProvider>
+    <div className="min-h-screen antialiased">
       {children}
-    </NextUIProvider>
+    </div>
   );
 } 
