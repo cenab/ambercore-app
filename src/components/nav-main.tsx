@@ -24,13 +24,16 @@ export function NavMain({ items }: NavMainProps) {
           <SidebarMenuButton
             onClick={() => navigate(item.url)}
             className={cn(
-              "hover:bg-zinc-800/50 h-14 flex items-center",
-              "group-data-[collapsed=true]:justify-center group-data-[collapsed=false]:pl-4",
+              "h-12 flex items-center transition-colors",
+              "group-data-[collapsed=true]:justify-center group-data-[collapsed=false]:px-4",
+              "hover:bg-zinc-800/50",
               item.isActive && "bg-zinc-800/50 text-white"
             )}
           >
-            <item.icon className="h-8 w-8 text-white" />
-            <span className="ml-3 group-data-[collapsed=true]:hidden text-white">{item.title}</span>
+            <item.icon className="h-6 w-6 text-white shrink-0" />
+            <span className="ml-3 text-sm text-white truncate group-data-[collapsed=true]:hidden">
+              {item.title}
+            </span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       ))}

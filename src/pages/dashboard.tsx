@@ -10,6 +10,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { TradingViewCharts } from "@/components/charts/trading-view"
 
 interface DashboardPageProps {
   children?: React.ReactNode
@@ -101,8 +102,8 @@ export default function DashboardPage({ children }: DashboardPageProps) {
               </div>
             </div>
           </header>
-          <div className="flex flex-1 flex-col gap-4 p-4 pt-0 bg-zinc-900">
-            {!searchQuery && children}
+          <div className="flex flex-1 flex-col bg-zinc-900">
+            <TradingViewCharts />
           </div>
         </SidebarInset>
       </SidebarProvider>
