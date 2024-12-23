@@ -14,25 +14,15 @@ import {
 import { NavMain } from "./nav-main"
 import { NavProjects } from "./nav-projects"
 import { NavUser } from "./nav-user"
+import { Logo } from "./logo"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  SidebarTrigger,
 } from "./ui/sidebar"
-
-// Logo component
-function Logo() {
-  return (
-    <div className="flex items-center justify-center w-full gap-2">
-      <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-emerald-800" />
-      <span className="text-xl font-['Menlo'] text-white group-data-[collapsible=icon]:hidden">
-        ambercore
-      </span>
-    </div>
-  )
-}
 
 // This is sample data.
 const data = {
@@ -148,19 +138,43 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [isCollapsed, setIsCollapsed] = React.useState(false)
+  const sidebarRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    const sidebar = sidebarRef.current
+    if (!sidebar) return
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-state') {
+          setIsCollapsed(sidebar.getAttribute('data-state') === 'collapsed')
+        }
+      })
+    })
+
+    observer.observe(sidebar, { attributes: true })
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <Logo />
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+    <div className="relative">
+      <div className="absolute top-4 left-2 z-50">
+        <Logo collapsed={isCollapsed} />
+      </div>
+      <Sidebar ref={sidebarRef} collapsible="icon" {...props}>
+        <SidebarHeader>
+          <div className="h-14" /> {/* Spacer for logo */}
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={data.navMain} />
+          <NavProjects projects={data.projects} />
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser user={data.user} />
+        </SidebarFooter>
+        <SidebarRail />
+      </Sidebar>
+    </div>
   )
 }
