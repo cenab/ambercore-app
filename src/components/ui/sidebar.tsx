@@ -515,7 +515,7 @@ const SidebarMenuItem = React.forwardRef<
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
 const sidebarMenuButtonVariants = cva(
-  "group/menu-button relative flex w-full items-center gap-2 rounded-md text-sm font-medium ring-offset-sidebar ring-offset-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring disabled:pointer-events-none disabled:opacity-50 font-['Menlo']",
+  "group/menu-button relative flex w-full items-center gap-2 rounded-md text-base font-medium ring-offset-sidebar ring-offset-2 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       size: {
@@ -549,7 +549,7 @@ const SidebarMenuButton = React.forwardRef<
             data-sidebar="menu-button"
             className={cn(
               sidebarMenuButtonVariants({ size }),
-              "group-data-[collapsible=icon]:h-12 group-data-[collapsible=icon]:w-12 group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:rounded-lg",
+              "group-data-[collapsible=icon]:h-12 group-data-[collapsible=icon]:w-15 group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:rounded-lg",
               "[&>svg]:size-6 [&>svg]:shrink-0 [&>svg]:text-white",
               "group-data-[collapsible=icon]:[&>*:not(svg)]:hidden",
               className
