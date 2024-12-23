@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/ui/icons"
 
-interface RegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-export function RegisterForm({ className, ...props }: RegisterFormProps) {
+export function RegisterForm({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const [isLoading, setIsLoading] = React.useState(false)
   const navigate = useNavigate()
 

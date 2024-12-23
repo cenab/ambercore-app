@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./App";
 import RegisterPage from "./pages/register";
 import DashboardPage from "./pages/dashboard";
-import ProjectsPage from "./pages/projects";
 import { Providers } from "./providers";
 import { AuthProvider } from "./lib/auth-context";
 import { ProtectedRoute } from "./components/auth/protected-route";
@@ -12,6 +11,7 @@ import { Toaster } from "./components/ui/toaster";
 import "./index.css";
 
 // Create empty page component
+// eslint-disable-next-line react-refresh/only-export-components
 const EmptyPage = () => (
   <div className="dark">
     <DashboardPage />
@@ -31,14 +31,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               element={
                 <ProtectedRoute>
                   <DashboardPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/projects/*"
-              element={
-                <ProtectedRoute>
-                  <ProjectsPage />
                 </ProtectedRoute>
               }
             />
